@@ -1,0 +1,18 @@
+{
+  "name": "@internal/commandline",
+  "private": true,
+  "version": "0.1.0",
+  "bin": {
+    "compiler-tsc": "bin/compiler-tsc.js",
+    "compiler-webpack": "bin/compiler-webpack.js",
+    "cleaner": "bin/cleaner.js",
+    "tester": "bin/tester.js",
+    "runner": "bin/runner.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "del": "5.1.0"
+  }
+}

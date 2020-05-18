@@ -1,0 +1,10 @@
+{
+  "version": "independent",
+  "npmClient": "yarn",
+  "packages": ["packages/*", "internals/*"],
+  "command": {
+    "init": {
+      "exact": true
+    }
+  }
+}
