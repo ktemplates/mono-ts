@@ -16,6 +16,6 @@ export class Dependencies {
   }
 
   loop(fn: (d: Dependency) => void) {
-    this.deps.forEach((d) => fn(d));
+    this.deps.forEach(d => fn(d));
   }
 }

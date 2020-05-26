@@ -3,44 +3,39 @@ import { resolve } from "path";
 import { Graph } from "./models/Graph";
 import { InternalDependency } from "./models/dependencies/InternalDependency";
 import { Dependencies } from "./models/dependencies/Dependencies";
-import { ExternalDependenciesClassify, Query } from "./constants/external";
+import { DependenciesClassify, Query } from "./constants/classify";
 import { DependencyCategory } from "./models/dependencies/DependencyCategory";
 import { ExternalDependencies } from "./models/dependencies/ExternalDependency";
 
-getPackages(resolve(__dirname, "..", "..", "..")).then((_packages) => {
+getPackages(resolve(__dirname, "..", "..", "..")).then(_packages => {
   const graph = new Graph("Deps");
 
-  const classify: Query = {};
-  classify[DependencyCategory.LIBRARY] = /(del)/;
-  classify[DependencyCategory.TYPE] = /(@types)/;
-  const externalDependenciesClassify = new ExternalDependenciesClassify(classify);
+  const externalModels: Query = {};
+  externalModels[DependencyCategory.LIBRARY] = /(del)/;
+  externalModels[DependencyCategory.TYPE] = /(@types)/;
+  const externalClassify = new DependenciesClassify(externalModels);
 
-  const internalDependencies = new Dependencies();
-  _packages.forEach((p) => internalDependencies.add(new InternalDependency(p)));
+  const internalModels: Query = {};
+  const internalClassify = new DependenciesClassify(internalModels);
 
-  _packages.forEach((p) => {
-    const d = internalDependencies.get(p.name);
+  const dependencies = new Dependencies();
+
+  _packages.forEach(p => dependencies.add(new InternalDependency(p, internalClassify)));
+
+  _packages.forEach(p => {
+    const d = dependencies.get(p.name);
     if (d) {
-      const deps = ExternalDependencies.from(externalDependenciesClassify, p.dependencies || {}, internalDependencies);
-      const devDeps = ExternalDependencies.from(
-        externalDependenciesClassify,
-        p.devDependencies || {},
-        internalDependencies,
-      );
-      const peerDeps = ExternalDependencies.from(
-        externalDependenciesClassify,
-        p.peerDependencies || {},
-        internalDependencies,
-      );
+      const deps = ExternalDependencies.from(externalClassify, p.dependencies || {}, dependencies);
+      const devDeps = ExternalDependencies.from(externalClassify, p.devDependencies || {}, dependencies);
+      const peerDeps = ExternalDependencies.from(externalClassify, p.peerDependencies || {}, dependencies);
 
-      deps.forEach((dd) => d.addDependOn(dd));
-      devDeps.forEach((dd) => d.addDevDependOn(dd));
-      peerDeps.forEach((dd) => d.addPeerDependOn(dd));
+      deps.forEach(dd => d.addDependOn(dd));
+      devDeps.forEach(dd => d.addDevDependOn(dd));
+      peerDeps.forEach(dd => d.addPeerDependOn(dd));
     }
   });
 
-  graph.visualize(internalDependencies);
-
+  graph.visualize(dependencies);
   console.log(graph.toString());
   graph.toPDF(process.cwd());
 });

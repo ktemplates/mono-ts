@@ -5,8 +5,9 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "compiler-tsc",
-    "start": "node lib/index.js"
+    "build": "icompiler-tsc",
+    "start": "irunner",
+    "clean": "icleaner"
   },
   "dependencies": {
     "@types/graphviz": "0.0.31",
@@ -15,6 +16,6 @@
   },
   "devDependencies": {
     "@internal/commandline": "0.1.0",
-    "@types/lerna__project": "0.1.2"
+    "@types/lerna__project": "0.1.0"
   }
 }
