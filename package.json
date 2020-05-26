@@ -5,7 +5,12 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "build:ci": "lerna run build --stream"
+    "build:ci": "yarn build --stream",
+    "start": "lerna exec yarn start",
+    "start:graph": "yarn start --scope '@internal/graph'",
+    "test": "lerna exec yarn test",
+    "test:ci": "jest --ci --runInBand",
+    "clean": "lerna run clean"
   },
   "devDependencies": {
     "@types/jest": "25.2.3",
@@ -16,6 +21,7 @@
     "eslint-config-prettier": "6.11.0",
     "eslint-loader": "4.0.2",
     "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-react": "7.20.0",
     "jest": "26.0.1",
     "jest-junit": "10.0.0",
     "lerna": "3.21.0",
