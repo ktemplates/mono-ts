@@ -1,0 +1,24 @@
+{
+  "name": "reactx",
+  "version": "0.1.0",
+  "private": true,
+  "description": "",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "icompiler-webpack",
+    "start": "irunner",
+    "clean": "icleaner",
+    "test": "itester"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@internal/commandline": "0.1.0",
+    "@internal/configuration": "0.1.0",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8"
+  }
+}
