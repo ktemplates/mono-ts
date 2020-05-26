@@ -9,8 +9,9 @@ cli.build(({ helper }) => {
   return async (opt?: Option): Promise<void> => {
     const logs = helper.parentPath("**/*.log");
     const lib = helper.parentPath("lib");
+    const buildinfo = helper.parentPath("tsconfig.tsbuildinfo");
 
-    const arr = [logs, lib];
+    const arr = [logs, lib, buildinfo];
     if (opt?.all ?? false) {
       const nodeModules = helper.parentPath("node_modules");
       const lock = helper.parentPath("yarn.lock");
