@@ -15,7 +15,8 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     "packages/**/*.{ts,tsx}",
-    "!internals/**/*.{ts,tsx}"
+    "!internals/**/*.{ts,tsx}",
+    "!typings/**/*.{ts,tsx}"
   ],
   coverageReporters: ["json", "lcov", "text", "clover"],
 };

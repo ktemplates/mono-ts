@@ -174,7 +174,7 @@ node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
-typings/
+# typings/
 
 # TypeScript cache
 *.tsbuildinfo
@@ -238,7 +238,7 @@ temp/
 
 ### Typings ###
 ## Ignore downloaded typings
-typings
+# typings
 
 ### Vim ###
 # Swap
