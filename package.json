@@ -13,6 +13,7 @@
     "test": "lerna exec yarn test",
     "test:ci": "jest --ci --runInBand",
     "clean": "lerna run clean",
+    "clean:all": "lerna run clean -- --all",
     "version:local": "lerna version --exact --force-publish --conventional-commits --conventional-graduate --changelog-preset 'angular' --create-release github --message 'chore(release): updates'",
     "version:beta": "lerna version --exact --preid beta --force-publish --conventional-commits --conventional-prerelease --changelog-preset 'angular' --create-release github --message 'chore(prerelease): updates'",
     "version:ci": "lerna version --sign-git-commit --sign-git-tag --yes --exact --force-publish --conventional-commits --conventional-graduate --changelog-preset 'angular' --create-release github --message 'chore(release): auto updates [skip ci]'",

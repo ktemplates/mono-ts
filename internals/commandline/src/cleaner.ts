@@ -23,4 +23,4 @@ cli.build(({ helper }) => {
   };
 });
 
-cli.start({ all: false });
+cli.start({ all: process.argv.includes("--all") });
