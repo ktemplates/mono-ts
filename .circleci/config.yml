@@ -10,18 +10,7 @@ parameters:
     default: "12.16"
 
 # Require environment data
-# GPG_PRIVATE_KEY_BASE64
-# GPG_IDENTIFY_KEY
-# GPG_SIGNING_KEY
-
-# COMMIT_EMAIL
-# COMMIT_NAME
-
-# SSH_FINGERPRINT
-
-# GH_TOKEN
-# NPM_TOKEN
-# SONAR_TOKEN
+# you can see all require environment variable at .env-default file
 
 commands:
   gpg-setup:
