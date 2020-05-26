@@ -1,4 +1,5 @@
 import { resolve } from "path";
+import { existsSync } from "fs";
 
 type CommandHelperOption = { root: string; parent: string; current: string };
 
@@ -19,5 +20,9 @@ export class CommandHelper {
 
   parentPath(...name: string[]) {
     return resolve(this.opts.parent, ...name);
+  }
+
+  check(path: string) {
+    return existsSync(path);
   }
 }
