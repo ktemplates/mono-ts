@@ -20,5 +20,7 @@ commit:
       value: Linter
     - type: config
       value: Configuration
+    - type: test
+      value: Testing both unittest and integration test
     - type: dev
       value: Development tools
