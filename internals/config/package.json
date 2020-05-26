@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "compiler-tsc"
+    "build": "icompiler-tsc",
+    "clean": "icleaner"
   },
   "devDependencies": {
     "@internal/commandline": "0.1.0",

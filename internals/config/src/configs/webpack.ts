@@ -4,17 +4,20 @@ import { resolve } from "path";
 
 interface Options {
   mode?: "production" | "development";
+  react?: boolean;
 }
 
 const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
   const root = _root ?? __dirname;
   const opts = _opts ?? {};
 
+  const index = opts.react ? "index.tsx" : "index.ts";
+
   return {
     mode: opts?.mode || "production",
     target: "node",
     entry: {
-      index: resolve(root, "src", "index.ts"),
+      index: resolve(root, "src", index),
     },
     devtool: "source-map",
     output: {
@@ -43,6 +46,10 @@ const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js", "json"],
+    },
+    externals: {
+      react: "React",
+      "react-dom": "ReactDOM",
     },
   };
 };
