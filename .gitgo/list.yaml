@@ -18,5 +18,7 @@ commit:
       value: Models
     - type: lint
       value: Linter
+    - type: config
+      value: Configuration
     - type: dev
       value: Development tools
