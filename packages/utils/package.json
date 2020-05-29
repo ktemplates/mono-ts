@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
+  "license": "SEE LICENSE IN LICENSE",
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "icompiler-webpack",
