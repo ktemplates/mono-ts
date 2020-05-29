@@ -5,7 +5,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "build:ci": "yarn build --stream",
+    "build:ci": "yarn build --stream --concurrency 1",
     "build:init": "yarn build --scope '@internal/*'",
     "build:graph": "yarn build --scope '@internal/graph'",
     "start": "lerna exec yarn start",
