@@ -1,34 +1,50 @@
 import { Linter } from "eslint";
 import { ConfigFunction } from "../models/ConfigFn";
 
-const eslint: ConfigFunction<void, Linter.Config> = _root => {
+interface Config {
+  /**
+   * add config to support react
+   * @default false
+   */
+  react?: boolean;
+}
+
+const eslint: ConfigFunction<Config, Linter.Config> = (_root, _opts) => {
   const root = _root ?? __dirname;
+  const option = _opts ?? {};
+  const opts = { react: false, ...option };
+
+  const plugins = ["prettier", "@typescript-eslint"];
+  const extend = [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/standard",
+  ];
+  const settings: { [name: string]: any } = {};
+
+  if (opts.react) {
+    plugins.push("react");
+    extend.push("plugin:react/recommended", "prettier/react");
+    settings.react = {
+      version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
+    };
+  }
 
   return {
     ignorePatterns: ["packages/**/lib/**", "internals/**/lib/**", "**/*.d.ts"],
     parser: "@typescript-eslint/parser",
-    plugins: ["prettier", "@typescript-eslint", "react"],
-    extends: [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:prettier/recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended",
-      "prettier/@typescript-eslint",
-      "prettier/react",
-      "prettier/standard",
-    ],
+    plugins,
+    extends: extend,
     parserOptions: {
       tsconfigRootDir: root,
       ecmaFeatures: {
-        jsx: true, // Allows for the parsing of JSX
+        jsx: opts.react, // Allows for the parsing of JSX
       },
     },
-    settings: {
-      react: {
-        version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
-      },
-    },
+    settings,
     rules: {
       "no-tabs": [
         "error",
