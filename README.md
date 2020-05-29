@@ -37,3 +37,5 @@ If you want to use `itester` command. You have to add **jest.config.js** file.
    1. gitgo - custom commit message which follow angular commit conversion
 4. Code analytics
    1. sonar - for checking code smell and errors; Need more configuration on sonar side
+
+![dependencies graph](docs/graph.png)

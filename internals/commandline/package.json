@@ -13,10 +13,10 @@
     "build": "tsc"
   },
   "dependencies": {
+    "del": "5.1.0",
     "minimist": "1.2.5"
   },
   "devDependencies": {
-    "@types/minimist": "1.2.0",
-    "del": "5.1.0"
+    "@types/minimist": "1.2.0"
   }
 }
