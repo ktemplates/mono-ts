@@ -1,6 +1,6 @@
 import { Configuration, RuleSetRule } from "webpack";
 import { ConfigFunction } from "../models/ConfigFn";
-import { resolve } from "path";
+import { resolve, join } from "path";
 
 type Mode = "production" | "development" | "none";
 
@@ -20,6 +20,12 @@ interface Options {
    * @default true
    */
   lint?: boolean;
+
+  /**
+   * custom index file to run
+   * @default index.ts and index.tsx for react
+   */
+  index?: string;
 }
 
 const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
@@ -36,22 +42,31 @@ const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
     },
   ];
 
-  if (opts.lint)
+  if (opts.lint) {
+    const eslint = join(root, ".eslintrc.js");
+    const report = join(root, "eslint.xml");
+
     rules.unshift({
       enforce: "pre",
       test: /\.tsx?$/,
       loader: "eslint-loader",
       exclude: /node_modules/,
       options: {
+        failOnError: true,
         cache: true,
+        configFile: eslint,
+        outputReport: {
+          filePath: report,
+        },
       },
     });
+  }
 
   return {
-    mode: opts?.mode || "production",
+    mode: opts.mode || "production",
     target: "node",
     entry: {
-      index: resolve(root, "src", index),
+      index: resolve(root, "src", opts.index ?? index),
     },
     devtool: "source-map",
     output: {

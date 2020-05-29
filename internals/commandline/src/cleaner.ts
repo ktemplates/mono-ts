@@ -20,8 +20,9 @@ const transformer = new Transformer(option, async ({ helper, data }) => {
   const buildinfo = helper.parentPath("*.buildinfo");
   const build = helper.parentPath("*.build");
   const junit = helper.parentPath("junit.xml");
+  const eslint = helper.parentPath("eslint.xml");
 
-  const arr = [logs, lib, buildinfo, build, junit];
+  const arr = [logs, lib, buildinfo, build, junit, eslint];
   if (data.all) {
     const nodeModules = helper.parentPath("node_modules");
     const lock = helper.parentPath("yarn.lock");
