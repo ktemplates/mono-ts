@@ -6,6 +6,26 @@ I create new mono repository for typescript projects. Which include `typescript`
 
 1. choose technology that you want. [here](#technology)
 
+## Create new package
+
+you can copy code from _example package. Mainly you need `src` folder and `package.json` file. And we have some optional file you might want.
+
+## Support tsc compiler
+
+If you want use `icompiler-tsc` command. You just update build command on package.json and done.
+
+## Support webpack compiler
+
+If you want to use `icompiler-webpack` command. You have to add **webpack.config.js** and **tsconfig.json** file.
+
+## Support linter and formatter
+
+By default this have editorconfig file so for basic formatting like space, newline, final line it will support on most of text-editor. but for advance formatting like eslint and prettier, you have to add **.eslintrc.js** file
+
+## Support testing
+
+If you want to use `itester` command. You have to add **jest.config.js** file.
+
 ## Technology
 
 1. CI/CD
