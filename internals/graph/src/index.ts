@@ -11,11 +11,15 @@ getPackages(resolve(__dirname, "..", "..", "..")).then(_packages => {
   const graph = new Graph("Deps");
 
   const externalModels: Query = {};
-  externalModels[DependencyCategory.LIBRARY] = /(del)/;
-  externalModels[DependencyCategory.TYPE] = /(@types)/;
+  externalModels[DependencyCategory.CORE] = /^(react|react-dom)$/;
+  externalModels[DependencyCategory.LIBRARY] = /^(del|minimist|graphviz|express)$/;
+  externalModels[DependencyCategory.TYPE] = /^(@types)/;
   const externalClassify = new DependenciesClassify(externalModels);
 
   const internalModels: Query = {};
+  internalModels[DependencyCategory.APPLICATION] = /^(website)$/;
+  internalModels[DependencyCategory.CORE] = /^(core)$/;
+  internalModels[DependencyCategory.LIBRARY] = /^(utils|reactx)$/;
   const internalClassify = new DependenciesClassify(internalModels);
 
   const dependencies = new Dependencies();
@@ -36,6 +40,6 @@ getPackages(resolve(__dirname, "..", "..", "..")).then(_packages => {
   });
 
   graph.visualize(dependencies);
-  console.log(graph.toString());
+  // console.log(graph.toString());
   graph.toPDF(process.cwd());
 });

@@ -18,8 +18,6 @@ style.newStyle(DependencyCategory.APPLICATION, { color: "red4" });
 style.newStyle(DependencyCategory.CORE, { color: "lightsteelblue1" });
 // green
 style.newStyle(DependencyCategory.LIBRARY, { color: "palegreen" });
-// yellow
-style.newStyle(DependencyCategory.STACK, { color: "gold4" });
 // orange
 style.newStyle(DependencyCategory.INTERNAL, { color: "orange4" });
 // pink
