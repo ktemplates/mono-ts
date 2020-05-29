@@ -16,7 +16,7 @@ module.exports = {
   collectCoverageFrom: [
     "packages/**/*.{ts,tsx}",
     "!internals/**/*.{ts,tsx}",
-    "!typings/**/*.{ts,tsx}"
+    "!typings/**/*.{ts,tsx}",
   ],
   coveragePathIgnorePatterns: ["/node_modules/", "/lib/"],
   coverageReporters: ["json", "lcov", "text", "clover"],
