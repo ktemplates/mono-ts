@@ -1,17 +1,51 @@
-import { Configuration } from "webpack";
+import { Configuration, RuleSetRule } from "webpack";
 import { ConfigFunction } from "../models/ConfigFn";
 import { resolve } from "path";
 
+type Mode = "production" | "development" | "none";
+
 interface Options {
-  mode?: "production" | "development";
+  /**
+   * webpack mode production / development / none
+   * @default production
+   */
+  mode?: Mode;
+  /**
+   * add config to support react
+   * @default false
+   */
   react?: boolean;
+  /**
+   * add config to support eslint and prettier
+   * @default true
+   */
+  lint?: boolean;
 }
 
 const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
   const root = _root ?? __dirname;
-  const opts = _opts ?? {};
+  const option = _opts ?? {};
+  const opts = { mode: "production" as Mode, react: false, lint: true, ...option };
 
   const index = opts.react ? "index.tsx" : "index.ts";
+  const rules: RuleSetRule[] = [
+    {
+      test: /\.tsx?$/,
+      loader: "ts-loader",
+      exclude: /node_modules/,
+    },
+  ];
+
+  if (opts.lint)
+    rules.unshift({
+      enforce: "pre",
+      test: /\.tsx?$/,
+      loader: "eslint-loader",
+      exclude: /node_modules/,
+      options: {
+        cache: true,
+      },
+    });
 
   return {
     mode: opts?.mode || "production",
@@ -27,22 +61,7 @@ const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
       libraryTarget: "umd",
     },
     module: {
-      rules: [
-        {
-          enforce: "pre",
-          test: /\.tsx?$/,
-          loader: "eslint-loader",
-          exclude: /node_modules/,
-          options: {
-            cache: true,
-          },
-        },
-        {
-          test: /\.tsx?$/,
-          loader: "ts-loader",
-          exclude: /node_modules/,
-        },
-      ],
+      rules: rules,
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js", "json"],
