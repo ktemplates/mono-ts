@@ -1,14 +1,16 @@
-import { Command } from "./models/Command";
-import { Commandline } from "./models/Commandline";
+import { Commandline } from "./commands/Commandline";
+import { Transformer } from "./models/Transformer";
+import { Option } from "./models/Option";
 
-const cli = new Command(process.cwd(), new Commandline());
-cli.build(({ helper }) => {
+const option = new Option(process.cwd(), process.argv.slice(2), Option.defaultTransformer);
+const transformer = new Transformer(option, ({ helper }) => {
   const config = helper.parentPath("webpack.config.js");
   if (helper.check(config)) {
-    return [helper.rootNodeModulesCommand("webpack"), "--config", helper.parentPath("webpack.config.js")];
+    return [helper.rootNodeModulesCommand("webpack"), "--config", config];
   } else {
     return ["echo", `[skip] webpack config not found (${config})`];
   }
 });
 
-cli.start(process.argv.slice(2));
+const cli = new Commandline(transformer);
+cli.start();

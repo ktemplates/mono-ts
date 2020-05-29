@@ -12,7 +12,11 @@
   "scripts": {
     "build": "tsc"
   },
+  "dependencies": {
+    "minimist": "1.2.5"
+  },
   "devDependencies": {
+    "@types/minimist": "1.2.0",
     "del": "5.1.0"
   }
 }

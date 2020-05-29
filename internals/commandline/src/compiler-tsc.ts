@@ -1,9 +1,11 @@
-import { Command } from "./models/Command";
-import { Commandline } from "./models/Commandline";
+import { Commandline } from "./commands/Commandline";
+import { Transformer } from "./models/Transformer";
+import { Option } from "./models/Option";
 
-const cli = new Command(process.cwd(), new Commandline());
-cli.build(({ helper }) => {
-  return [helper.rootNodeModulesCommand("tsc"), "--project", helper.currentPath("includes")];
+const option = new Option(process.cwd(), process.argv.slice(2), Option.defaultTransformer);
+const transformer = new Transformer(option, ({ helper, data }) => {
+  return [helper.rootNodeModulesCommand("tsc"), "--project", helper.currentPath("includes"), ...data];
 });
 
-cli.start(process.argv.slice(2));
+const cli = new Commandline(transformer);
+cli.start();

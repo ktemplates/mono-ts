@@ -1,26 +1,38 @@
 import del from "del";
-import { Command } from "./models/Command";
-import { Method } from "./models/Method";
+import parser from "minimist";
 
-type Option = { all: boolean };
+import { Transformer } from "./models/Transformer";
+import { Option } from "./models/Option";
+import { Runner } from "./commands/Runner";
 
-const cli = new Command(process.cwd(), new Method<Option>());
-cli.build(({ helper }) => {
-  return async (opt?: Option): Promise<void> => {
-    const logs = helper.parentPath("**/*.log");
-    const lib = helper.parentPath("lib");
-    const buildinfo = helper.parentPath("tsconfig.tsbuildinfo");
+const option = new Option(process.cwd(), process.argv.slice(2), ({ data }) => {
+  const argument = parser(data);
 
-    const arr = [logs, lib, buildinfo];
-    if (opt?.all ?? false) {
-      const nodeModules = helper.parentPath("node_modules");
-      const lock = helper.parentPath("yarn.lock");
-      arr.push(nodeModules, lock);
-    }
-
-    const deletedPaths = await del(arr);
-    console.log("Deleted files and directories:\n", deletedPaths.join("\n"));
+  return {
+    all: argument.all as boolean,
   };
 });
 
-cli.start({ all: process.argv.includes("--all") });
+const transformer = new Transformer(option, async ({ helper, data }) => {
+  const logs = helper.parentPath("**/*.log");
+  const lib = helper.parentPath("lib");
+
+  const buildinfo = helper.parentPath("*.buildinfo");
+  const build = helper.parentPath("*.build");
+  const junit = helper.parentPath("junit.xml");
+
+  const arr = [logs, lib, buildinfo, build, junit];
+  if (data.all) {
+    const nodeModules = helper.parentPath("node_modules");
+    const lock = helper.parentPath("yarn.lock");
+    arr.push(nodeModules, lock);
+  }
+
+  const deletedPaths = await del(arr);
+  deletedPaths.forEach((v, i) => {
+    console.log(`${i + 1}) remove ${v}`);
+  });
+});
+
+const runner = new Runner(transformer);
+runner.start();

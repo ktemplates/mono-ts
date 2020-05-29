@@ -1,17 +1,16 @@
-import { Command } from "./models/Command";
-import { Commandline } from "./models/Commandline";
+import { Commandline } from "./commands/Commandline";
+import { Transformer } from "./models/Transformer";
+import { Option } from "./models/Option";
 
-const cli = new Command(process.cwd(), new Commandline());
-cli.build(({ helper }) => {
+const option = new Option(process.cwd(), process.argv.slice(2), Option.defaultTransformer);
+const transformer = new Transformer(option, ({ helper }) => {
   const jest = helper.rootNodeModulesCommand("jest");
   const config = helper.parentPath("jest.config.js");
 
   if (helper.check(config)) {
     const args = [jest, "--config", config, "--passWithNoTests"];
     const ci = process.env.CI === "true";
-    if (ci) {
-      args.push("--ci", "--runInband");
-    }
+    if (ci) args.push("--ci", "--runInband");
 
     return args;
   } else {
@@ -19,4 +18,5 @@ cli.build(({ helper }) => {
   }
 });
 
-cli.start(process.argv.slice(2));
+const cli = new Commandline(transformer);
+cli.start();
