@@ -29,3 +29,5 @@ jobs:
 
       - run: yarn build:ci
       - run: yarn test:ci
+
+      - run: yarn clean
