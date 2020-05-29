@@ -11,6 +11,14 @@ export class Commandline implements Execution<string[], childProcess.ChildProces
     const command = _commands.shift() ?? "exit";
 
     console.debug(`[debug] cmd: ${command} ${_commands.join(" ")}`);
-    return childProcess.spawn(command, _commands, { stdio: "inherit" });
+    const proc = childProcess.spawn(command, _commands, { stdio: "inherit" });
+    proc.on("exit", (code, signal) => {
+      console.debug(`[debug] exit code: ${code} (signal=${signal})`);
+
+      const c = code ?? 1;
+      if (c > 0) process.exit(c);
+    });
+
+    return proc;
   }
 }
