@@ -9,26 +9,49 @@
 module.exports = {
   ignorePatterns: ["packages/**/lib/**", "internals/**/lib/**", "**/*.d.ts"],
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["prettier", "@typescript-eslint", "react"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
+    "prettier/react",
+    "prettier/standard",
   ],
   parserOptions: {
     tsconfigRootDir: __dirname,
     ecmaFeatures: {
-      jsx: true // Allows for the parsing of JSX
-    }
+      jsx: true, // Allows for the parsing of JSX
+    },
   },
   settings: {
     react: {
-      version: "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
-    }
+      version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
   },
   rules: {
+    "no-tabs": [
+      "error",
+      {
+        allowIndentationTabs: false,
+      },
+    ],
+    "arrow-parens": ["error", "as-needed"],
+    "prettier/prettier": [
+      "error",
+      {
+        semi: true,
+        trailingComma: "es5",
+        singleQuote: false,
+        printWidth: 120,
+        tabWidth: 2,
+        useTabs: false,
+        arrowParens: "avoid",
+        endOfLine: "lf",
+      },
+    ],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
@@ -107,5 +130,6 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    es6: true,
   },
-}
+};
