@@ -1,6 +1,6 @@
-import { Configuration, RuleSetRule } from "webpack";
+import { Configuration, RuleSetRule, ProvidePlugin, Plugin, ExternalsElement } from "webpack";
 import { ConfigFunction } from "../models/ConfigFn";
-import { resolve, join } from "path";
+import { resolve, join, basename } from "path";
 
 type Mode = "production" | "development" | "none";
 
@@ -26,12 +26,20 @@ interface Options {
    * @default index.ts and index.tsx for react
    */
   index?: string;
+
+  /**
+   * custom library name
+   * @default <folder_name> this will get data from package name
+   */
+  output?: string;
 }
 
 const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
   const root = _root ?? __dirname;
+  const base = basename(root);
+
   const option = _opts ?? {};
-  const opts = { mode: "production" as Mode, react: false, lint: true, ...option };
+  const opts = { mode: "production" as Mode, react: false, lint: true, output: base, ...option };
 
   const index = opts.react ? "index.tsx" : "index.ts";
   const rules: RuleSetRule[] = [
@@ -41,6 +49,9 @@ const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
       exclude: /node_modules/,
     },
   ];
+
+  const plugins: Plugin[] = [];
+  const externals: ExternalsElement[] = [];
 
   if (opts.lint) {
     const eslint = join(root, ".eslintrc.js");
@@ -62,6 +73,45 @@ const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
     });
   }
 
+  if (opts.react) {
+    plugins.push(
+      new ProvidePlugin({
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        React: "React",
+        react: "React",
+        "window.react": "React",
+        "window.React": "React",
+      })
+    );
+
+    externals.push({
+      react: {
+        root: "React",
+        umd: "React",
+        commonjs: "react",
+        commonjs2: "react",
+      },
+      "prop-types": {
+        root: "PropTypes",
+        umd: "PropTypes",
+        commonjs: "prop-types",
+        commonjs2: "prop-types",
+      },
+      "react-dom": {
+        root: "ReactDOM",
+        umd: "ReactDOM",
+        commonjs: "react-dom",
+        commonjs2: "react-dom",
+      },
+      "react-dom/server": {
+        root: "ReactDOMServer",
+        umd: "ReactDOMServer",
+        commonjs: "react-dom/server",
+        commonjs2: "react-dom/server",
+      },
+    });
+  }
+
   return {
     mode: opts.mode || "production",
     target: "node",
@@ -72,19 +122,18 @@ const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
     output: {
       path: resolve(root, "lib"),
       filename: "[name].js",
-      library: ["[name]"],
+      library: opts.output,
       libraryTarget: "umd",
     },
     module: {
       rules: rules,
+      noParse: [/react/, /prop-types/],
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".js", "json"],
+      extensions: [".tsx", ".ts", ".js", ".jsx", "json"],
     },
-    externals: {
-      react: "React",
-      "react-dom": "ReactDOM",
-    },
+    plugins: plugins,
+    externals: externals,
   };
 };
 
