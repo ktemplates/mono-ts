@@ -1,8 +1,8 @@
 import { Dependency } from "./Dependency";
 import { DependencyCategory } from "./DependencyCategory";
 import { DependencyType } from "./DependencyType";
-import { DependenciesClassify } from "../../constants/classify";
 import { Dependencies } from "./Dependencies";
+import { Classify } from "../query/Classify";
 
 export class ExternalDependency extends Dependency {
   constructor(name: string, version: string, category: DependencyCategory) {
@@ -11,7 +11,7 @@ export class ExternalDependency extends Dependency {
 }
 
 export class ExternalDependencies {
-  static from(classify: DependenciesClassify, p: Record<string, string>, internal: Dependencies): ExternalDependency[] {
+  static from(classify: Classify, p: Record<string, string>, internal: Dependencies): ExternalDependency[] {
     return Object.keys(p)
       .map(name => {
         const i = internal.get(name);

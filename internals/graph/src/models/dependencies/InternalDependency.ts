@@ -3,10 +3,17 @@ import { Package } from "@lerna/package";
 import { Dependency } from "./Dependency";
 import { DependencyType } from "./DependencyType";
 
-import { DependenciesClassify } from "../../constants/classify";
+import { Classify } from "../query/Classify";
+import { DependencyCategory } from "./DependencyCategory";
 
 export class InternalDependency extends Dependency {
-  constructor(p: Package, classify: DependenciesClassify) {
-    super(p.name, p.version, DependencyType.INTERNAL, classify.type(p.name, p.version));
+  constructor(name: string, version: string, category: DependencyCategory) {
+    super(name, version, DependencyType.INTERNAL, category);
+  }
+}
+
+export class InternalDependencies {
+  static from(classify: Classify, p: Package) {
+    return new InternalDependency(p.name, p.version, classify.type(p.name, p.version));
   }
 }

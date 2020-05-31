@@ -1,30 +1,18 @@
 import { getPackages } from "@lerna/project";
 import { resolve } from "path";
 import { Graph } from "./models/Graph";
-import { InternalDependency } from "./models/dependencies/InternalDependency";
 import { Dependencies } from "./models/dependencies/Dependencies";
-import { DependenciesClassify, Query } from "./constants/classify";
-import { DependencyCategory } from "./models/dependencies/DependencyCategory";
+import { InternalDependencies } from "./models/dependencies/InternalDependency";
 import { ExternalDependencies } from "./models/dependencies/ExternalDependency";
+
+import { internalClassify, externalClassify } from "./settings";
 
 getPackages(resolve(__dirname, "..", "..", "..")).then(_packages => {
   const graph = new Graph("Deps");
 
-  const externalModels: Query = {};
-  externalModels[DependencyCategory.CORE] = /^(react|react-dom)$/;
-  externalModels[DependencyCategory.LIBRARY] = /^(del|minimist|graphviz|express)$/;
-  externalModels[DependencyCategory.TYPE] = /^(@types)/;
-  const externalClassify = new DependenciesClassify(externalModels);
-
-  const internalModels: Query = {};
-  internalModels[DependencyCategory.APPLICATION] = /^(website)$/;
-  internalModels[DependencyCategory.CORE] = /^(core)$/;
-  internalModels[DependencyCategory.LIBRARY] = /^(utils|reactx)$/;
-  const internalClassify = new DependenciesClassify(internalModels);
-
   const dependencies = new Dependencies();
 
-  _packages.forEach(p => dependencies.add(new InternalDependency(p, internalClassify)));
+  _packages.forEach(p => dependencies.add(InternalDependencies.from(internalClassify, p)));
 
   _packages.forEach(p => {
     const d = dependencies.get(p.name);

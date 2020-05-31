@@ -33,7 +33,12 @@ export enum DependencyCategory {
   TYPE = "type",
 
   /**
-   * this is only for fallback
+   * ignore package will never add to final graph
+   */
+  IGNORE = "ignore",
+
+  /**
+   * this is only for fallback. this will be ignore if type is external
    */
   UNKNOWN = "unknown",
 }

@@ -9,7 +9,7 @@ export abstract class Dependency {
     protected _category: DependencyCategory,
     protected _dependencies: Dependency[] = [],
     protected _devDependencies: Dependency[] = [],
-    protected _peerDependencies: Dependency[] = [],
+    protected _peerDependencies: Dependency[] = []
   ) {}
 
   addDependOn(d: Dependency) {
