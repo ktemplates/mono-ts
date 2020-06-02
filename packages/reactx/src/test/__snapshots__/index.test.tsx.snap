@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test create react component 1`] = `
+<h1>
+  Hello from 
+  typescript
+   and 
+  webpack
+  !
+</h1>
+`;

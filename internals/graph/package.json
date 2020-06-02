@@ -16,6 +16,7 @@
   "devDependencies": {
     "@internal/commandline": "0.1.0",
     "@types/graphviz": "0.0.31",
+    "@types/package_json": "0.1.0",
     "@types/lerna__project": "0.1.0"
   }
 }

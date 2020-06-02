@@ -184,6 +184,7 @@ jspm_packages/
 
 # Optional eslint cache
 .eslintcache
+eslint.xml
 
 # Optional REPL history
 .node_repl_history

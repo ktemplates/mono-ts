@@ -1,4 +1,4 @@
-import { Package } from "@lerna/package";
+import { Package } from "package_json";
 
 import { Dependency } from "./Dependency";
 import { DependencyType } from "./DependencyType";
