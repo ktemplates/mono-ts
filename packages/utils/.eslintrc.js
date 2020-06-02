@@ -1,2 +1,2 @@
-const config = require("@internal/configuration").eslint;
-module.exports = config(__dirname);
+const eslint = require("@internal/configuration").eslint;
+module.exports = eslint(__dirname).build();

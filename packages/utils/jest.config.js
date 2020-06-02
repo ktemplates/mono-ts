@@ -1,2 +1,2 @@
-const config = require("@internal/configuration").jest;
-module.exports = config(__dirname);
+const jest = require("@internal/configuration").jest;
+module.exports = jest(__dirname).build();

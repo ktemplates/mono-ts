@@ -1,2 +1,2 @@
-const config = require("@internal/configuration").webpack;
-module.exports = config(__dirname);
+const webpack = require("@internal/configuration").webpack;
+module.exports = webpack(__dirname).build();

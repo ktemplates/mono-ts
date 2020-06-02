@@ -1,2 +1,6 @@
-const config = require("@internal/configuration").webpack;
-module.exports = config(__dirname, { react: true, index: "index.ts" });
+const webpack = require("@internal/configuration").webpack;
+module.exports = webpack(__dirname, {
+  target: "node",
+  react: true,
+  index: "index.ts",
+}).build();
