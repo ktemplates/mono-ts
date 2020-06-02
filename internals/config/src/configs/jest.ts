@@ -1,4 +1,5 @@
-import { ConfigFunction } from "../models/ConfigFn";
+import { ConfigBuilder } from "../models/ConfigBuilder";
+import { Config } from "../models/Config";
 
 interface JestConfig {
   verbose: boolean;
@@ -10,18 +11,21 @@ interface JestConfig {
   coverageReporters: string[];
 }
 
-const jest: ConfigFunction<void, JestConfig> = _root => {
-  return {
-    verbose: true,
-    rootDir: _root ?? process.cwd(),
-    preset: "ts-jest",
-    testEnvironment: "node",
-    reporters: ["default", "jest-junit"],
-    collectCoverage: true,
-    collectCoverageFrom: ["**/*.{ts,tsx}"],
-    coveragePathIgnorePatterns: ["<rootDir>/lib/", "<rootDir>/node_modules/"],
-    coverageReporters: ["json", "lcov", "text", "clover"],
-  };
+const jest: ConfigBuilder<void, JestConfig> = {
+  default: void 0,
+  transformer: ({ helper }) => {
+    return {
+      verbose: true,
+      rootDir: helper.parentPath(),
+      preset: "ts-jest",
+      testEnvironment: "node",
+      reporters: ["default", "jest-junit"],
+      collectCoverage: true,
+      collectCoverageFrom: ["**/*.{ts,tsx}"],
+      coveragePathIgnorePatterns: ["<rootDir>/lib/", "<rootDir>/node_modules/"],
+      coverageReporters: ["json", "lcov", "text", "clover"],
+    };
+  },
 };
 
-export default jest;
+export default (dir?: string, input?: void) => new Config(jest, input, dir);

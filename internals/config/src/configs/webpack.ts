@@ -1,140 +1,148 @@
 import { Configuration, RuleSetRule, ProvidePlugin, Plugin, ExternalsElement } from "webpack";
-import { ConfigFunction } from "../models/ConfigFn";
-import { resolve, join, basename } from "path";
+
+import { ConfigBuilder } from "../models/ConfigBuilder";
+import { byDefault, getOrElse } from "../utils/helper";
+import { Config } from "../models/Config";
 
 type Mode = "production" | "development" | "none";
+type Target = "node" | "web";
 
-interface Options {
+const defaultConfig = {
   /**
    * webpack mode production / development / none
    * @default production
    */
-  mode?: Mode;
+  mode: "production" as Mode,
   /**
    * add config to support react
    * @default false
    */
-  react?: boolean;
+  react: false,
   /**
    * add config to support eslint and prettier
    * @default true
    */
-  lint?: boolean;
-
+  lint: true,
   /**
    * custom index file to run
    * @default index.ts and index.tsx for react
    */
-  index?: string;
-
+  index: "",
   /**
    * custom library name
    * @default <folder_name> this will get data from package name
    */
-  output?: string;
-}
+  output: "",
 
-const webpack: ConfigFunction<Options, Configuration> = (_root, _opts) => {
-  const root = _root ?? __dirname;
-  const base = basename(root);
-
-  const option = _opts ?? {};
-  const opts = { mode: "production" as Mode, react: false, lint: true, output: base, ...option };
-
-  const index = opts.react ? "index.tsx" : "index.ts";
-  const rules: RuleSetRule[] = [
-    {
-      test: /\.tsx?$/,
-      loader: "ts-loader",
-      exclude: /node_modules/,
-    },
-  ];
-
-  const plugins: Plugin[] = [];
-  const externals: ExternalsElement[] = [];
-
-  if (opts.lint) {
-    const eslint = join(root, ".eslintrc.js");
-    const report = join(root, "eslint.xml");
-
-    rules.unshift({
-      enforce: "pre",
-      test: /\.tsx?$/,
-      loader: "eslint-loader",
-      exclude: /node_modules/,
-      options: {
-        failOnError: true,
-        cache: true,
-        configFile: eslint,
-        outputReport: {
-          filePath: report,
-        },
-      },
-    });
-  }
-
-  if (opts.react) {
-    plugins.push(
-      new ProvidePlugin({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        React: "React",
-        react: "React",
-        "window.react": "React",
-        "window.React": "React",
-      })
-    );
-
-    externals.push({
-      react: {
-        root: "React",
-        umd: "React",
-        commonjs: "react",
-        commonjs2: "react",
-      },
-      "prop-types": {
-        root: "PropTypes",
-        umd: "PropTypes",
-        commonjs: "prop-types",
-        commonjs2: "prop-types",
-      },
-      "react-dom": {
-        root: "ReactDOM",
-        umd: "ReactDOM",
-        commonjs: "react-dom",
-        commonjs2: "react-dom",
-      },
-      "react-dom/server": {
-        root: "ReactDOMServer",
-        umd: "ReactDOMServer",
-        commonjs: "react-dom/server",
-        commonjs2: "react-dom/server",
-      },
-    });
-  }
-
-  return {
-    mode: opts.mode || "production",
-    target: "node",
-    entry: {
-      index: resolve(root, "src", opts.index ?? index),
-    },
-    devtool: "source-map",
-    output: {
-      path: resolve(root, "lib"),
-      filename: "[name].js",
-      library: opts.output,
-      libraryTarget: "umd",
-    },
-    module: {
-      rules: rules,
-      noParse: [/react/, /prop-types/],
-    },
-    resolve: {
-      extensions: [".tsx", ".ts", ".js", ".jsx", "json"],
-    },
-    plugins: plugins,
-    externals: externals,
-  };
+  target: "" as Target,
 };
 
-export default webpack;
+type Options = Partial<typeof defaultConfig>;
+
+const webpack: ConfigBuilder<Options, Configuration> = {
+  default: defaultConfig,
+  transformer: ({ helper, data }) => {
+    const base = helper.parentBaseName();
+    const options = byDefault(defaultConfig, data);
+
+    const target = getOrElse(options.target, options.react ? "web" : "node");
+    const index = getOrElse(options.index, options.react ? "index.tsx" : "index.ts");
+    const library = getOrElse(options.output, base);
+
+    const rules: RuleSetRule[] = [
+      {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ];
+
+    const plugins: Plugin[] = [];
+    const externals: ExternalsElement[] = [];
+
+    const eslint = helper.parentPath(".eslintrc.js");
+    if (options.lint && helper.checkSync(eslint)) {
+      const report = helper.parentPath("eslint.xml");
+
+      rules.unshift({
+        enforce: "pre",
+        test: /\.tsx?$/,
+        loader: "eslint-loader",
+        exclude: /node_modules/,
+        options: {
+          failOnError: true,
+          cache: true,
+          configFile: eslint,
+          outputReport: {
+            filePath: report,
+          },
+        },
+      });
+    }
+
+    if (options.react) {
+      plugins.push(
+        new ProvidePlugin({
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          React: "React",
+          react: "React",
+          "window.react": "React",
+          "window.React": "React",
+        })
+      );
+
+      externals.push({
+        react: {
+          root: "React",
+          umd: "React",
+          commonjs: "react",
+          commonjs2: "react",
+        },
+        "prop-types": {
+          root: "PropTypes",
+          umd: "PropTypes",
+          commonjs: "prop-types",
+          commonjs2: "prop-types",
+        },
+        "react-dom": {
+          root: "ReactDOM",
+          umd: "ReactDOM",
+          commonjs: "react-dom",
+          commonjs2: "react-dom",
+        },
+        "react-dom/server": {
+          root: "ReactDOMServer",
+          umd: "ReactDOMServer",
+          commonjs: "react-dom/server",
+          commonjs2: "react-dom/server",
+        },
+      });
+    }
+
+    return {
+      mode: options.mode,
+      target,
+      entry: {
+        index: helper.parentPath("src", index),
+      },
+      devtool: "source-map",
+      output: {
+        path: helper.parentPath("lib"),
+        filename: "[name].js",
+        library,
+        libraryTarget: "umd",
+      },
+      module: {
+        rules,
+        noParse: [/react/, /prop-types/],
+      },
+      resolve: {
+        extensions: [".tsx", ".ts", ".js", ".jsx", "json"],
+      },
+      plugins,
+      externals,
+    };
+  },
+};
+
+export default (dir?: string, input?: Options) => new Config(webpack, input, dir);
