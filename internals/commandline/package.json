@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/minimist": "1.2.0",
+    "@types/package_json": "0.1.0",
     "trash-cli": "3.0.0"
   }
 }

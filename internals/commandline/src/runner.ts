@@ -19,8 +19,8 @@ const option = new Option({
 });
 
 const transformer = new AsyncRunner(option, async ({ helper, data }) => {
-  const runner = helper.parentPath("lib", data.index);
-  if (helper.check(runner)) {
+  const runner = await helper.parent.pathEnsure("lib", data.index);
+  if (runner !== undefined) {
     return ["node", runner];
   } else {
     return ["echo", `[skip] ${data.index} not found`];
