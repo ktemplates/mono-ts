@@ -10,7 +10,7 @@
     "build:graph": "yarn build --scope '@internal/graph'",
     "start": "lerna exec yarn start",
     "start:graph": "yarn start --scope '@internal/graph'",
-    "test": "lerna exec yarn test",
+    "test": "lerna exec yarn test --ignore '@types/*' --ignore '@internal/*'",
     "test:ci": "jest --ci --runInBand",
     "clean": "lerna run clean && lerna run clean:cli",
     "clean:all": "lerna run clean -- --all",
