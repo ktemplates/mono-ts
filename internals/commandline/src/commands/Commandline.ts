@@ -1,14 +1,13 @@
 import { spawn, ChildProcess } from "child_process";
-import { Execution } from "../models/Execution";
-import { Transformer } from "../models/Transformer";
 
-/**
- * This will get transformer command array and execute
- */
-export class Commandline<O> extends Execution<O, string[], ChildProcess> {
-  constructor(transformer: Transformer<O, string[]>) {
-    super(transformer, ({ data }) => {
-      const commands = data.transform;
+import { DataChain } from "../models/async/DataChain";
+import { Command } from "../models/async/Command";
+import { DataProcess } from "../models/common/DataProcess";
+
+export class Commandline<O> extends DataChain<O, string[], ChildProcess> implements Command<ChildProcess> {
+  constructor(data: DataProcess<O, Promise<string[]>>) {
+    super(data, async ({ data }) => {
+      const commands = data;
       const command = commands.shift() ?? "echo";
 
       console.debug(`[debug] command: ${command} ${commands.join(" ")}`);
@@ -22,5 +21,9 @@ export class Commandline<O> extends Execution<O, string[], ChildProcess> {
 
       return proc;
     });
+  }
+
+  start() {
+    return this.build();
   }
 }

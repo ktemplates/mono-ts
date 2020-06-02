@@ -1,18 +1,24 @@
 import parser from "minimist";
 
-import { Commandline } from "./commands/Commandline";
-import { Transformer } from "./models/Transformer";
-import { Option } from "./models/Option";
+import { AsyncRunner, Commandline, Option } from ".";
 
-const option = new Option(process.cwd(), process.argv.slice(2), ({ data }) => {
-  const argument = parser(data);
+type Settings = {
+  index: string;
+};
 
-  return {
-    index: argument.index ?? "index.js",
-  };
+const option = new Option({
+  dirname: process.cwd(),
+  input: process.argv.slice(2),
+  transform: async ({ data }) => {
+    const argument = parser(data);
+
+    return {
+      index: argument.index ?? "index.js",
+    } as Settings;
+  },
 });
 
-const transformer = new Transformer(option, ({ helper, data }) => {
+const transformer = new AsyncRunner(option, async ({ helper, data }) => {
   const runner = helper.parentPath("lib", data.index);
   if (helper.check(runner)) {
     return ["node", runner];
@@ -21,6 +27,5 @@ const transformer = new Transformer(option, ({ helper, data }) => {
   }
 });
 
-/// irunner [--index [index.js]]
 const cli = new Commandline(transformer);
 cli.start();

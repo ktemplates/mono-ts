@@ -1,28 +1,37 @@
 import del from "del";
 import parser from "minimist";
 
-import { Transformer } from "./models/Transformer";
-import { Option } from "./models/Option";
-import { Runner } from "./commands/Runner";
+import { AsyncRunner, Setting } from ".";
 
-const option = new Option(process.cwd(), process.argv.slice(2), ({ data }) => {
-  const argument = parser(data);
+type Settings = {
+  all: boolean;
+};
 
-  return {
-    all: argument.all as boolean,
-  };
+const setting = new Setting({
+  dirname: process.cwd(),
+  input: process.argv.slice(2),
+  transform: async ({ data }) => {
+    const argument = parser(data);
+
+    return {
+      all: argument.all ?? false,
+    } as Settings;
+  },
 });
 
-const transformer = new Transformer(option, async ({ helper, data }) => {
+const runner = new AsyncRunner(setting, async ({ helper, data }) => {
   const logs = helper.parentPath("**/*.log");
   const lib = helper.parentPath("lib");
 
+  const tsbuildinfo = helper.parentPath("*.tsbuildinfo");
   const buildinfo = helper.parentPath("*.buildinfo");
   const build = helper.parentPath("*.build");
+
+  const coverage = helper.parentPath("coverage");
   const junit = helper.parentPath("junit.xml");
   const eslint = helper.parentPath("eslint.xml");
 
-  const arr = [logs, lib, buildinfo, build, junit, eslint];
+  const arr = [logs, lib, tsbuildinfo, buildinfo, build, coverage, junit, eslint];
   if (data.all) {
     const nodeModules = helper.parentPath("node_modules");
     const lock = helper.parentPath("yarn.lock");
@@ -35,5 +44,4 @@ const transformer = new Transformer(option, async ({ helper, data }) => {
   });
 });
 
-const runner = new Runner(transformer);
 runner.start();
