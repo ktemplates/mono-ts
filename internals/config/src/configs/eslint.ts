@@ -44,7 +44,7 @@ const eslint: ConfigBuilder<Setting, Linter.Config> = {
       plugins,
       extends: extend,
       parserOptions: {
-        tsconfigRootDir: helper.parentPath(),
+        tsconfigRootDir: helper.parent.pwd,
         ecmaFeatures: {
           jsx: options.react, // Allows for the parsing of JSX
         },

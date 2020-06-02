@@ -42,7 +42,7 @@ type Options = Partial<typeof defaultConfig>;
 const webpack: ConfigBuilder<Options, Configuration> = {
   default: defaultConfig,
   transformer: ({ helper, data }) => {
-    const base = helper.parentBaseName();
+    const base = helper.parent.projectName();
     const options = byDefault(defaultConfig, data);
 
     const target = getOrElse(options.target, options.react ? "web" : "node");
@@ -60,9 +60,9 @@ const webpack: ConfigBuilder<Options, Configuration> = {
     const plugins: Plugin[] = [];
     const externals: ExternalsElement[] = [];
 
-    const eslint = helper.parentPath(".eslintrc.js");
-    if (options.lint && helper.checkSync(eslint)) {
-      const report = helper.parentPath("eslint.xml");
+    const eslint = helper.parent.pathEnsureSync(".eslintrc.js");
+    if (options.lint && eslint !== undefined) {
+      const report = helper.parent.path("eslint.xml");
 
       rules.unshift({
         enforce: "pre",
@@ -123,11 +123,11 @@ const webpack: ConfigBuilder<Options, Configuration> = {
       mode: options.mode,
       target,
       entry: {
-        index: helper.parentPath("src", index),
+        index: helper.parent.path("src", index),
       },
       devtool: "source-map",
       output: {
-        path: helper.parentPath("lib"),
+        path: helper.parent.path("lib"),
         filename: "[name].js",
         library,
         libraryTarget: "umd",
