@@ -27,6 +27,7 @@ getPackages(resolve(__dirname, "..", "..", "..")).then(_packages => {
     }
   });
 
+  graph.engine("circo");
   graph.visualize(dependencies);
   // console.log(graph.toString());
   graph.toPDF(process.cwd());
