@@ -1,2 +1,2 @@
 const { eslint } = require("@internal/configuration");
-module.exports = eslint(__dirname, { react: true }).build();
+module.exports = eslint(__dirname).build();

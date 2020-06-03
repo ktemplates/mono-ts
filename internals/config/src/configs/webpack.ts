@@ -43,7 +43,13 @@ const webpack: ConfigBuilder<Options, Configuration> = {
   default: defaultConfig,
   transformer: ({ helper, data }) => {
     const base = helper.parent.projectName();
-    const options = byDefault(defaultConfig, data);
+
+    const autoDetect: Options = {};
+    autoDetect.react = helper.parent.searchPackageJsonSync("dependencies", "react");
+    autoDetect.index =
+      helper.parent.pathEnsureSync("src", "index.ts") ?? helper.parent.pathEnsureSync("src", "index.tsx");
+
+    const options = byDefault(defaultConfig, autoDetect, data);
 
     const tsconfig = helper.parent.path("tsconfig.json");
 

@@ -7,6 +7,8 @@ import { Package } from "package_json";
 const exists = promisify(_exists);
 const readFile = promisify(_readFile);
 
+type QueryType = "dirname" | "json";
+
 export class PathHelper {
   constructor(private filepath: string) {}
 
@@ -19,14 +21,23 @@ export class PathHelper {
     return this.path("node_modules", ".bin", name);
   }
 
-  projectName(scope: boolean = true) {
-    const base = basename(this.filepath);
+  projectName(by: QueryType = "dirname", scope: boolean = true): string {
+    if (by === "dirname") {
+      const base = basename(this.filepath);
 
-    const dirpath = dirname(this.filepath);
-    const dir = basename(dirpath);
+      const dirpath = dirname(this.filepath);
+      const dir = basename(dirpath);
 
-    if (dir.includes("@") && scope) return `${dir}/${base}`;
-    else return base;
+      if (dir.includes("@") && scope) return `${dir}/${base}`;
+      else return base;
+    } else if (by === "json") {
+      const pjson = this.packageJsonSync();
+      const name = pjson.name ?? "";
+      if (name.includes("/")) return scope ? name : name.split("/")[1] ?? name;
+      else return name;
+    } else {
+      return "unknown";
+    }
   }
 
   /**

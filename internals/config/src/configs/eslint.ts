@@ -17,7 +17,10 @@ type Setting = Partial<typeof defaultConfig>;
 const eslint: ConfigBuilder<Setting, Linter.Config> = {
   default: defaultConfig,
   transformer: ({ data, helper }) => {
-    const options = byDefault(defaultConfig, data);
+    const autoDetect: Setting = {};
+    autoDetect.react = helper.parent.searchPackageJsonSync("dependencies", "react");
+
+    const options = byDefault(defaultConfig, autoDetect, data);
 
     const plugins = ["prettier", "@typescript-eslint"];
     const extend = [
