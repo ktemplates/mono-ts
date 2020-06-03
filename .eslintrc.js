@@ -9,15 +9,13 @@
 module.exports = {
   ignorePatterns: ["packages/**/lib/**", "internals/**/lib/**", "**/*.d.ts"],
   parser: "@typescript-eslint/parser",
-  plugins: ["prettier", "@typescript-eslint", "react"],
+  plugins: ["prettier", "@typescript-eslint"],
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "prettier/react",
     "prettier/standard",
   ],
   parserOptions: {
