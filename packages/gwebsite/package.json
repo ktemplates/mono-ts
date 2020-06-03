@@ -1,0 +1,31 @@
+{
+  "name": "gwebsite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build:prod": "gatsby build",
+    "start": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "itester"
+  },
+  "dependencies": {
+    "gatsby-plugin-typescript": "2.4.4",
+    "gatsby": "2.22.17",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "utils": "0.1.0",
+    "reactx": "0.1.0"
+  },
+  "devDependencies": {
+    "@internal/commandline": "0.1.0",
+    "@internal/configuration": "0.1.0",
+    "@internal/testkit": "0.1.0",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8"
+  }
+}
