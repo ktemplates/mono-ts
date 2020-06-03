@@ -48,6 +48,8 @@ const eslint: ConfigBuilder<Setting, Linter.Config> = {
         ecmaFeatures: {
           jsx: options.react, // Allows for the parsing of JSX
         },
+        ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
+        sourceType: "module", // Allows for the use of imports
       },
       settings,
       rules: {

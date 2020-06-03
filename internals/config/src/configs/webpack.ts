@@ -45,6 +45,8 @@ const webpack: ConfigBuilder<Options, Configuration> = {
     const base = helper.parent.projectName();
     const options = byDefault(defaultConfig, data);
 
+    const tsconfig = helper.parent.path("tsconfig.json");
+
     const target = getOrElse(options.target, options.react ? "web" : "node");
     const index = getOrElse(options.index, options.react ? "index.tsx" : "index.ts");
     const library = getOrElse(options.output, base);
@@ -53,7 +55,8 @@ const webpack: ConfigBuilder<Options, Configuration> = {
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /lib/, /test/, /\.test\.ts/, /\.spec\.ts/],
+        options: { configFile: tsconfig },
       },
     ];
 
@@ -68,7 +71,7 @@ const webpack: ConfigBuilder<Options, Configuration> = {
         enforce: "pre",
         test: /\.tsx?$/,
         loader: "eslint-loader",
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /lib/, /test/],
         options: {
           failOnError: true,
           cache: true,
