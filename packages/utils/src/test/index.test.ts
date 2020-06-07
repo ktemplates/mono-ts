@@ -9,6 +9,6 @@ describe("test", () => {
 
   test("index class", () => {
     const index = new Index();
-    expect(index).not.toBeUndefined()
-  })
+    expect(index).not.toBeUndefined();
+  });
 });
