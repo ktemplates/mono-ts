@@ -6,7 +6,6 @@
     "bootstrap": "lerna bootstrap",
     "build": "scripts/runner.sh type=run cmd=build",
     "build:ci": "scripts/runner.sh type=run cmd=build",
-    "build:init": "scripts/runner.sh type=run cmd=build on=@internal/*",
     "test": "lerna exec yarn test --ignore '@types/*' --ignore '@internal/*'",
     "test:ci": "jest --ci --runInBand",
     "clean": "lerna run clean && lerna run clean:cli",
