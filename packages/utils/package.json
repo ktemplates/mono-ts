@@ -15,7 +15,7 @@
     "test": "itester"
   },
   "devDependencies": {
-    "@internal/commandline": "0.1.0",
-    "@internal/configuration": "0.1.0"
+    "@kcinternal/commandline": "0.6.1",
+    "@kcinternal/configuration": "0.4.3"
   }
 }

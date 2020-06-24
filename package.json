@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "scripts/runner.sh type=run cmd=build",
-    "build:ci": "scripts/runner.sh type=run cmd=build",
-    "test": "lerna exec yarn test --ignore '@types/*' --ignore '@internal/*'",
-    "test:ci": "jest --ci --runInBand",
+    "build": "root-build",
+    "build:ci": "root-build",
+    "test": "root-test",
+    "test:ci": "root-test",
     "clean": "lerna run clean && lerna run clean:cli",
     "clean:all": "lerna run clean -- --all",
     "dev:gwebsite": "scripts/runner.sh type=exec cmd=develop on=gwebsite",
@@ -19,6 +19,8 @@
     "release:ci": "scripts/release.sh cmd=publish CI=true"
   },
   "devDependencies": {
+    "@kcinternal/commandline": "0.6.1",
+    "@kcinternal/configuration": "0.4.3",
     "@types/jest": "26.0.0",
     "@types/node": "14.0.13",
     "@typescript-eslint/eslint-plugin": "2.34.0",
