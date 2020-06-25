@@ -15,10 +15,10 @@
   resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.5.4.tgz#33d2b5b076b667112f4f0b6dc2ea6b21e2b39828"
   integrity sha512-TZiPjRS+xPmgggQ1TbeZj+e7u9uEDPBMoEO+Kf4ghMW3b1hqC5S4nbQcWa9TxSnz1y53VIMAQVBRWs06+9XDaw==
 
-"@kcinternal/graph@0.2.18":
-  version "0.2.18"
-  resolved "https://registry.yarnpkg.com/@kcinternal/graph/-/graph-0.2.18.tgz#2c1af09f459f78dd004ffd98a8d0fb80ac6a82be"
-  integrity sha512-evUxB81YPhpn361jFWvFGhe7AF2aTgnx7cPay3DEqAzxOW0BXd/HW9SWRL7tNgWtQj9HlyFk/k7oIbfeJpi7FQ==
+"@kcinternal/graph@0.2.24":
+  version "0.2.24"
+  resolved "https://registry.yarnpkg.com/@kcinternal/graph/-/graph-0.2.24.tgz#d36d0ede9f3d4c90b7a5c4dcb40f2b3a53ba2b24"
+  integrity sha512-Pgo3g2NgKpu34G1KydyS27eYaExudoFz2Chrpn/tU4smJJrBYqmhEJ8lEtmkxcUE7JmWlKE/vpOsVR1zHytwhQ==
   dependencies:
     "@lerna/project" "3.18.0"
     graphviz "0.0.9"
