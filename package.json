@@ -1,6 +1,10 @@
 {
   "name": "root",
   "version": "0.0.0-development",
+  "generator": {
+    "name": "ktemplates/mono-ts",
+    "version": "2.0.0"
+  },
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
