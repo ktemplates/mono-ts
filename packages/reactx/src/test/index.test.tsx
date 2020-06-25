@@ -1,6 +1,6 @@
 import React from "react";
 
-import { shallow, toJson } from "@internal/testkit";
+import { shallow, toJson } from "@kcutils/react-testkit";
 import { Hello } from "..";
 
 describe("test", () => {

@@ -1,4 +1,4 @@
-const webpack = require("@internal/configuration").webpack;
+const webpack = require("@kcinternal/configuration").webpack;
 module.exports = webpack(__dirname, {
   target: "node",
   react: true,

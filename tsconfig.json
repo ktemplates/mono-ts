@@ -7,7 +7,7 @@
 // ######################################################################## //
 
 {
-  "extends": "./node_modules/@kcinternal/commandline/includes/tsconfig.json"
+  "extends": "./node_modules/@kcinternal/commandline/includes/root/tsconfig.json"
 }
 
 // {

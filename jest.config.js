@@ -7,8 +7,7 @@
 // ######################################################################## //
 
 const { jest } = require("@kcinternal/configuration");
-const config = jest(__dirname).build();
-config.rootDir = __dirname;
+const config = jest(__dirname, { root: true }).build();
 module.exports = config;
 
 // const {jest} = require('@kcinternal/configuration')

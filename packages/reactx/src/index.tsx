@@ -5,7 +5,7 @@ export interface HelloProps {
   framework: string;
 }
 
-export function Hello(props: HelloProps) {
+export function Hello(props: HelloProps): JSX.Element {
   return (
     <h1>
       Hello from {props.compiler} and {props.framework}!
