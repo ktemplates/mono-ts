@@ -10,13 +10,15 @@
     "test:ci": "root-test",
     "clean": "root-clean",
     "clean:all": "root-clean --all",
-    "dev:gwebsite": "scripts/runner.sh type=exec cmd=develop on=gwebsite",
-    "build:graph": "scripts/runner.sh type=run cmd=build on=graph",
-    "start:graph": "scripts/runner.sh type=exec cmd=start on=graph",
-    "version:local": "scripts/release.sh cmd=version",
-    "version:ci": "scripts/release.sh cmd=version CI=true",
-    "release:local": "scripts/release.sh cmd=publish",
-    "release:ci": "scripts/release.sh cmd=publish CI=true"
+    "dev:gwebsite": "root-run --build --on=gwebsite",
+    "build:graph": "root-build --scope graph",
+    "start:graph": "root-run --scope graph",
+    "updated:local": "root-release --type=updated",
+    "updated:ci": "root-release --type=updated",
+    "version:local": "root-release --type=version",
+    "version:ci": "root-release --type=version",
+    "release:local": "root-release --type=release",
+    "release:ci": "root-release --type=release"
   },
   "devDependencies": {
     "@kcinternal/commandline": "0.7.0",

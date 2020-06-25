@@ -1,13 +1,15 @@
 import { builder, Classify, QueryBuilder, DependencyCategory } from "@kcinternal/graph";
 
 const externalModels = new QueryBuilder();
-externalModels.add(DependencyCategory.CORE, /(graphviz|lerna)/);
-externalModels.add(DependencyCategory.LIBRARY, /(chalk|figures)/);
+// externalModels.add(DependencyCategory.CORE, /(graphviz|lerna)/);
+externalModels.add(DependencyCategory.LIBRARY, /(react|kcutils)/);
 const external = new Classify(externalModels, true);
 
 const internalModels = new QueryBuilder();
-internalModels.add(DependencyCategory.INTERNAL, /(kcinternal)/);
-internalModels.add(DependencyCategory.LIBRARY, /(kcutils)/);
+internalModels.add(DependencyCategory.INTERNAL, /(graph|example)/);
+internalModels.add(DependencyCategory.LIBRARY, /(utils|reactx)/);
+internalModels.add(DependencyCategory.CORE, /(core)/);
+internalModels.add(DependencyCategory.APPLICATION, /(website)/);
 const internal = new Classify(internalModels, true);
 
 (async () => {
