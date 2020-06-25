@@ -539,18 +539,18 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@kcinternal/commandline@0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@kcinternal/commandline/-/commandline-0.7.0.tgz#e8ca425e2cf13c3089018d7d0da3db8a59e968f1"
-  integrity sha512-fOQeckfge5oamKBqCptxFbv6uqFWw8/W4UJ1C38usW5Otnh4oZcntxzz4D1LT2GRrc8BFGwibExtgRyWrizQBQ==
+"@kcinternal/commandline@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@kcinternal/commandline/-/commandline-0.7.2.tgz#bea545d6bece0ffd07b58fd9f5bd2e02215289d5"
+  integrity sha512-C3UUkGoQ6EtkpGlhjHwkLtUGK5Cd3rRZZ+66L7oFtr7lsjMMwJ2v7lU/9KTdydIIsH45DN+w7XbmcD1dsRJs2Q==
   dependencies:
     del "5.1.0"
     minimist "1.2.5"
 
-"@kcinternal/configuration@0.5.6":
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.5.6.tgz#5beaf2d10367c47a3c7044c028345e2aea50dcdd"
-  integrity sha512-YoUox+S9TJqxSEhyOHaNdVQyyhVx1x/Dh8YVum6+QpNFL9jyxPIJt21a55XLdfH8H5QgCkMaiij9bJ3ZQePJEQ==
+"@kcinternal/configuration@0.5.8":
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.5.8.tgz#be213809d505dbfcb697816afaaeaaebadba2906"
+  integrity sha512-DDTxsWhZU5SwDgfBekb6erluvkodcAZU1c7EWwWxF+i+S3KItcQUhAUEh/uxfHSk6v6ov5gGM0xvGBoAonueCw==
 
 "@lerna/add@3.21.0":
   version "3.21.0"
