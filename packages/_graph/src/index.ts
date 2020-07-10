@@ -7,7 +7,7 @@ const external = new Classify(externalModels, true);
 
 const internalModels = new QueryBuilder();
 internalModels.add(DependencyCategory.INTERNAL, /(graph|example)/);
-internalModels.add(DependencyCategory.LIBRARY, /(utils|reactx)/);
+internalModels.add(DependencyCategory.LIBRARY, /(utils|components)/);
 internalModels.add(DependencyCategory.CORE, /(core)/);
 internalModels.add(DependencyCategory.APPLICATION, /(website)/);
 const internal = new Classify(internalModels, true);

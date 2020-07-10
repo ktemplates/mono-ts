@@ -19,7 +19,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "utils": "0.1.0",
-    "reactx": "0.1.0"
+    "components": "0.1.0"
   },
   "devDependencies": {
     "@kcinternal/commandline": "0.6.1",
