@@ -14,7 +14,7 @@
     "test:ci": "root-tester",
     "clean": "root-clean",
     "clean:all": "root-clean --all",
-    "dev:gwebsite": "root-run --build --on=gwebsite",
+    "dev:gwebsite": "root-run --build --scope=gwebsite",
     "build:graph": "root-build --scope graph",
     "start:graph": "root-run --scope graph",
     "updated:local": "root-release --type=updated",
