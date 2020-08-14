@@ -17,10 +17,10 @@
   dependencies:
     identity-obj-proxy "3.0.0"
 
-"@kcinternal/graph@0.2.25":
-  version "0.2.25"
-  resolved "https://registry.yarnpkg.com/@kcinternal/graph/-/graph-0.2.25.tgz#3c2a6533b0c107843f012d14b6d10d4279f373d9"
-  integrity sha512-MboFuh6NYFAVlU0OXgZG0zlQ+Sa/gfA+COLWAJZqWLuWFabUiSqb0WFQvVDq4/1jaccAk2Y/es4JBIhsnQYHJw==
+"@kcinternal/graph@0.2.34":
+  version "0.2.34"
+  resolved "https://registry.yarnpkg.com/@kcinternal/graph/-/graph-0.2.34.tgz#868903e910a4f4a45918ed75cfa24c11488abbe8"
+  integrity sha512-c5PbIbb/vMW02GMA7/3vw4ZgBSEtOK54rLbfbK0HxI3WUB8OWVetq6rHvARhhY4LuBCEbt+ahiye6Z2uT+Ys1Q==
   dependencies:
     "@lerna/project" "3.18.0"
     graphviz "0.0.9"
