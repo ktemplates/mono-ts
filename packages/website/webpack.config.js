@@ -7,5 +7,5 @@ const config = webpack(__dirname, {
 
 config.output.globalObject = "window";
 
-console.log(config);
+// console.log(config);
 module.exports = config;

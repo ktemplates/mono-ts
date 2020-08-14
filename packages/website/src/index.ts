@@ -3,7 +3,7 @@ import express from "express";
 import React from "react";
 import { renderToString } from "react-dom/server";
 
-import { Hello } from "components";
+import { Hello } from "@kcmono/components";
 
 const PORT = process.env.PORT ?? 3000;
 

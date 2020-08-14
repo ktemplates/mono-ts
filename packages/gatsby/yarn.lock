@@ -1337,23 +1337,25 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@kcinternal/commandline@0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@kcinternal/commandline/-/commandline-0.6.1.tgz#47bb5ef2b7ef620567501160a81b63c1517bdc4e"
-  integrity sha512-pXng6/vBjBicx25b3Mjt18zt7Xe03VsBYOGTOkESF4xdNSEXXxW0lU6Y574mhNUL5Aw6dEpePk4W8fvy20abhA==
+"@kcinternal/commandline@0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@kcinternal/commandline/-/commandline-0.10.1.tgz#df6a5c8af8396c71651eaf949b0bcfa8b34cf1a8"
+  integrity sha512-XQSWRp8+2aoPXpR0RIJOtgBdWXuFQjawsH+K81cUTBgB1Zx/S7BSeEIrp3xRppjPv0i+3jujhJLbsNJzcWSzqA==
   dependencies:
     del "5.1.0"
     minimist "1.2.5"
 
-"@kcinternal/configuration@0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.4.3.tgz#f1e905ab3755885250887d90f734a38842d7c860"
-  integrity sha512-jsWZNCPPGHbj33cDk6XlaPX40ynwlQ5gyozZz2PvV5vaN9/R9mpl1YeSResjKudchRUBjWyPul7+hwFpXZbG3g==
+"@kcinternal/configuration@0.6.11":
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.6.11.tgz#0b633d1939a87d77266e7b81d073af627f8dccca"
+  integrity sha512-KbxCv37Pw1rSmYbVf8IIL8sB9s0l5RIFwZ70c8wpY9orC5HWt7xNdxyjmKcvZmXechQzsk8v3/UOPxioGxA0aA==
+  dependencies:
+    identity-obj-proxy "3.0.0"
 
-"@kcutils/react-testkit@0.3.6":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/@kcutils/react-testkit/-/react-testkit-0.3.6.tgz#bcff41d3640465c6588be83c58a72b01bacebada"
-  integrity sha512-NLNXQeZXzWbQXqk/zY8KAuv1D7KtlpOhgr7uysY3klpdwqb0bRQxH1zgOSVipAoBbe2IkQDaur8O6Oz8nVs7cg==
+"@kcutils/react-testkit@0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@kcutils/react-testkit/-/react-testkit-0.4.2.tgz#c990b0480c3ddd9c6db64b8a229aa535e2521f82"
+  integrity sha512-UYCD63DaHE/Jfv+hHFaZiu+CPxzkrkKHuTgoEak0ojsIN/3vbNd0LSuloskw79Oodm7YPpnoD+e/KINFKXOYQg==
   dependencies:
     enzyme "3.11.0"
     enzyme-adapter-react-16 "1.15.2"
@@ -6734,6 +6736,11 @@ handle-thing@^2.0.0:
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
   integrity sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==
 
+harmony-reflect@^1.4.6:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/harmony-reflect/-/harmony-reflect-1.6.1.tgz#c108d4f2bb451efef7a37861fdbdae72c9bdefa9"
+  integrity sha512-WJTeyp0JzGtHcuMsi7rw2VwtkvLa+JyfEKJCFyfcS0+CDkjQ5lHPu7zEhFZP+PDSRrEgXa5Ah0l1MbgbE41XjA==
+
 has-ansi@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-2.0.0.tgz#34f5049ce1ecdf2b0649af3ef24e45ed35416d91"
@@ -7137,6 +7144,13 @@ icss-utils@^2.1.0:
   integrity sha1-g/Cg7DeL8yRheLbCrZE28TWxyWI=
   dependencies:
     postcss "^6.0.1"
+
+identity-obj-proxy@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz#94d2bda96084453ef36fbc5aaec37e0f79f1fc14"
+  integrity sha1-lNK9qWCERT7zb7xarsN+D3nx/BQ=
+  dependencies:
+    harmony-reflect "^1.4.6"
 
 ieee754@^1.1.4:
   version "1.1.13"

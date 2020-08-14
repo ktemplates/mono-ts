@@ -2,18 +2,20 @@
 # yarn lockfile v1
 
 
-"@kcinternal/commandline@0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@kcinternal/commandline/-/commandline-0.6.1.tgz#47bb5ef2b7ef620567501160a81b63c1517bdc4e"
-  integrity sha512-pXng6/vBjBicx25b3Mjt18zt7Xe03VsBYOGTOkESF4xdNSEXXxW0lU6Y574mhNUL5Aw6dEpePk4W8fvy20abhA==
+"@kcinternal/commandline@0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@kcinternal/commandline/-/commandline-0.10.1.tgz#df6a5c8af8396c71651eaf949b0bcfa8b34cf1a8"
+  integrity sha512-XQSWRp8+2aoPXpR0RIJOtgBdWXuFQjawsH+K81cUTBgB1Zx/S7BSeEIrp3xRppjPv0i+3jujhJLbsNJzcWSzqA==
   dependencies:
     del "5.1.0"
     minimist "1.2.5"
 
-"@kcinternal/configuration@0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.4.3.tgz#f1e905ab3755885250887d90f734a38842d7c860"
-  integrity sha512-jsWZNCPPGHbj33cDk6XlaPX40ynwlQ5gyozZz2PvV5vaN9/R9mpl1YeSResjKudchRUBjWyPul7+hwFpXZbG3g==
+"@kcinternal/configuration@0.6.11":
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.6.11.tgz#0b633d1939a87d77266e7b81d073af627f8dccca"
+  integrity sha512-KbxCv37Pw1rSmYbVf8IIL8sB9s0l5RIFwZ70c8wpY9orC5HWt7xNdxyjmKcvZmXechQzsk8v3/UOPxioGxA0aA==
+  dependencies:
+    identity-obj-proxy "3.0.0"
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
@@ -421,6 +423,11 @@ graceful-fs@^4.2.2:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
+harmony-reflect@^1.4.6:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/harmony-reflect/-/harmony-reflect-1.6.1.tgz#c108d4f2bb451efef7a37861fdbdae72c9bdefa9"
+  integrity sha512-WJTeyp0JzGtHcuMsi7rw2VwtkvLa+JyfEKJCFyfcS0+CDkjQ5lHPu7zEhFZP+PDSRrEgXa5Ah0l1MbgbE41XjA==
+
 http-errors@1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.7.2.tgz#4f5029cf13239f31036e5b2e55292bcfbcc85c8f"
@@ -449,6 +456,13 @@ iconv-lite@0.4.24:
   integrity sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
+
+identity-obj-proxy@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz#94d2bda96084453ef36fbc5aaec37e0f79f1fc14"
+  integrity sha1-lNK9qWCERT7zb7xarsN+D3nx/BQ=
+  dependencies:
+    harmony-reflect "^1.4.6"
 
 ignore@^5.1.1:
   version "5.1.8"

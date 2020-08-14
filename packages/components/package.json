@@ -1,5 +1,5 @@
 {
-  "name": "components",
+  "name": "@kcmono/components",
   "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
@@ -9,7 +9,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "icompiler-webpack",
+    "build": "icompiler-tsc",
     "start": "irunner",
     "clean": "icleaner",
     "test": "itester"
@@ -19,10 +19,12 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@kcinternal/commandline": "0.6.1",
-    "@kcinternal/configuration": "0.4.3",
-    "@kcutils/react-testkit": "0.3.6",
+    "@kcinternal/commandline": "0.10.1",
+    "@kcinternal/configuration": "0.6.11",
+    "@kcutils/react-testkit": "0.4.2",
     "@types/react": "16.9.35",
-    "@types/react-dom": "16.9.8"
+    "@types/react-dom": "16.9.8",
+    "@types/enzyme": "3.10.5",
+    "@types/enzyme-adapter-react-16": "1.0.6"
   }
 }

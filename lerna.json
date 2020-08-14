@@ -1,7 +1,7 @@
 {
   "version": "independent",
   "npmClient": "yarn",
-  "packages": ["packages/*", "internals/*", "typings/*"],
+  "packages": ["packages/*", "typings/*"],
   "command": {
     "init": {
       "exact": true

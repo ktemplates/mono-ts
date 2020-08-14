@@ -2,18 +2,20 @@
 # yarn lockfile v1
 
 
-"@kcinternal/commandline@0.6.6":
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/@kcinternal/commandline/-/commandline-0.6.6.tgz#e2c4c034edd43a76942a49d0e2a835a51f086465"
-  integrity sha512-RaEyXji/IMMI0dvMbfzZqczFx+qNyE8Fgq3Dd+UY+r/gc9LNDY2WnynTEoC7crs90PFxB8YfmNtSmrGKlqyXlA==
+"@kcinternal/commandline@0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@kcinternal/commandline/-/commandline-0.10.1.tgz#df6a5c8af8396c71651eaf949b0bcfa8b34cf1a8"
+  integrity sha512-XQSWRp8+2aoPXpR0RIJOtgBdWXuFQjawsH+K81cUTBgB1Zx/S7BSeEIrp3xRppjPv0i+3jujhJLbsNJzcWSzqA==
   dependencies:
     del "5.1.0"
     minimist "1.2.5"
 
-"@kcinternal/configuration@0.5.4":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.5.4.tgz#33d2b5b076b667112f4f0b6dc2ea6b21e2b39828"
-  integrity sha512-TZiPjRS+xPmgggQ1TbeZj+e7u9uEDPBMoEO+Kf4ghMW3b1hqC5S4nbQcWa9TxSnz1y53VIMAQVBRWs06+9XDaw==
+"@kcinternal/configuration@0.6.11":
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/@kcinternal/configuration/-/configuration-0.6.11.tgz#0b633d1939a87d77266e7b81d073af627f8dccca"
+  integrity sha512-KbxCv37Pw1rSmYbVf8IIL8sB9s0l5RIFwZ70c8wpY9orC5HWt7xNdxyjmKcvZmXechQzsk8v3/UOPxioGxA0aA==
+  dependencies:
+    identity-obj-proxy "3.0.0"
 
 "@kcinternal/graph@0.2.25":
   version "0.2.25"
@@ -649,6 +651,11 @@ graphviz@0.0.9:
   dependencies:
     temp "~0.4.0"
 
+harmony-reflect@^1.4.6:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/harmony-reflect/-/harmony-reflect-1.6.1.tgz#c108d4f2bb451efef7a37861fdbdae72c9bdefa9"
+  integrity sha512-WJTeyp0JzGtHcuMsi7rw2VwtkvLa+JyfEKJCFyfcS0+CDkjQ5lHPu7zEhFZP+PDSRrEgXa5Ah0l1MbgbE41XjA==
+
 has-unicode@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/has-unicode/-/has-unicode-2.0.1.tgz#e0e6fe6a28cf51138855e086d1691e771de2a8b9"
@@ -689,6 +696,13 @@ hosted-git-info@^2.7.1:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
   integrity sha512-f/wzC2QaWBs7t9IYqB4T3sR1xviIViXJRJTWBlx2Gf3g0Xi5vI7Yy4koXQ1c9OYDGHN9sBy1DQ2AB8fqZBWhUg==
+
+identity-obj-proxy@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz#94d2bda96084453ef36fbc5aaec37e0f79f1fc14"
+  integrity sha1-lNK9qWCERT7zb7xarsN+D3nx/BQ=
+  dependencies:
+    harmony-reflect "^1.4.6"
 
 ignore@^4.0.3:
   version "4.0.6"

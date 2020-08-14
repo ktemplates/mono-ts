@@ -17,7 +17,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@kcinternal/commandline": "0.6.1",
-    "@kcinternal/configuration": "0.4.3"
+    "@kcinternal/commandline": "0.10.1",
+    "@kcinternal/configuration": "0.6.11"
   }
 }

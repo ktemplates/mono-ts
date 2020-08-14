@@ -1,5 +1,5 @@
 {
-  "name": "gwebsite",
+  "name": "@kcmono/gatsby",
   "version": "0.1.0",
   "private": true,
   "description": "",
@@ -18,13 +18,13 @@
     "gatsby": "2.22.17",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "utils": "0.1.0",
-    "components": "0.1.0"
+    "@kcmono/utils": "0.1.0",
+    "@kcmono/components": "0.1.0"
   },
   "devDependencies": {
-    "@kcinternal/commandline": "0.6.1",
-    "@kcinternal/configuration": "0.4.3",
-    "@kcutils/react-testkit": "0.3.6",
+    "@kcinternal/commandline": "0.10.1",
+    "@kcinternal/configuration": "0.6.11",
+    "@kcutils/react-testkit": "0.4.2",
     "@types/react": "16.9.35",
     "@types/react-dom": "16.9.8"
   }

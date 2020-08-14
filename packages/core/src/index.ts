@@ -1,3 +1,3 @@
-import { Index } from "utils";
+import { Index } from "@kcmono/utils";
 
 console.log(new Index());

@@ -9,16 +9,16 @@
     "access": "public"
   },
   "scripts": {
-    "build": "icompiler-webpack",
+    "build": "icompiler-tsc",
     "start": "irunner",
     "clean": "icleaner",
     "test": "itester"
   },
   "dependencies": {
-    "utils": "0.1.0"
+    "@kcmono/utils": "0.1.0"
   },
   "devDependencies": {
-    "@kcinternal/commandline": "0.6.1",
-    "@kcinternal/configuration": "0.4.3"
+    "@kcinternal/commandline": "0.10.1",
+    "@kcinternal/configuration": "0.6.11"
   }
 }
