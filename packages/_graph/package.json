@@ -11,7 +11,7 @@
     "clean": "icleaner"
   },
   "dependencies": {
-    "@kcinternal/graph": "0.2.38"
+    "@kcinternal/graph": "0.2.40"
   },
   "devDependencies": {
     "@kcinternal/commandline": "0.10.1",
