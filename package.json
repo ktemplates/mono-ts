@@ -27,7 +27,7 @@
   "devDependencies": {
     "@kcinternal/commandline": "0.10.2",
     "@kcinternal/configuration": "0.6.12",
-    "@types/jest": "26.0.23",
+    "@types/jest": "26.0.24",
     "@types/node": "15.12.2",
     "@typescript-eslint/eslint-plugin": "4.28.1",
     "@typescript-eslint/parser": "4.28.2",
